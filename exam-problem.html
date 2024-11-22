@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    body {
+        font-family: system-ui, -apple-system, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 0 20px;
+        color: #24292f;
+    }
+    .problem-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
+    .step {
+        background: #ddf4ff;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 6px;
+    }
+    .rationale {
+        background: #dafbe1;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 6px;
+    }
+    .hint {
+        background: #fff4e5;
+        padding: 10px;
+        border-left: 4px solid #dd8e00;
+        margin: 10px 0;
+    }
+    .code {
+        font-family: monospace;
+        background: #f6f8fa;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+    h1, h2 { 
+        color: #24292f;
+        border-bottom: 2px solid #d0d7de;
+        padding-bottom: 8px;
+    }
+</style>
+</head>
+<body>
+    <h1>Final Exam Practice Problem: Medical Appointment System</h1>
+    
+    <div class="problem-section">
+        <h2>Problem Statement</h2>
+        <p>You are developing a medical clinic's appointment system. Create a Python class called <code>MedicalAppointment</code> that manages individual appointments. The class should handle appointment scheduling, status tracking, and basic validation.</p>
+        
+        <div class="hint">
+            <strong>Exam Tips:</strong>
+            <ul>
+                <li>Write your code clearly and neatly on paper</li>
+                <li>Leave space between methods for potential corrections</li>
+                <li>Draw a line through mistakes instead of erasing</li>
+                <li>Use consistent indentation (preferably 4 spaces)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="problem-section">
+        <h2>Implementation Steps</h2>
+
+        <div class="step">
+            <h3>Step 1: Plan Your Class</h3>
+            <p>Before writing any code, list the attributes and methods you'll need:</p>
+            
+            <strong>Required Attributes:</strong>
+            <ul>
+                <li>Patient name</li>
+                <li>Start time (datetime)</li>
+                <li>Duration in minutes</li>
+                <li>Status (scheduled, completed, cancelled)</li>
+                <li>Notes list</li>
+            </ul>
+
+            <strong>Required Methods:</strong>
+            <ul>
+                <li>Constructor</li>
+                <li>Properties for validation</li>
+                <li>Appointment management methods</li>
+                <li>String representation</li>
+            </ul>
+
+            <div class="rationale">
+                Planning helps you organize your thoughts and ensures you don't forget important components. It's also helpful during the exam to have a checklist of what you need to implement.
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>Step 2: Write the Constructor</h3>
+            <p>Start with the <code>__init__</code> method to set up your object's initial state.</p>
+
+            <strong>Tasks:</strong>
+            <ol>
+                <li>Define constructor parameters:
+                    <ul>
+                        <li>patient_name (required)</li>
+                        <li>start_time (required)</li>
+                        <li>duration_mins (optional, default to 30)</li>
+                    </ul>
+                </li>
+                <li>Initialize attributes with appropriate default values</li>
+                <li>Use underscore prefix for attributes that will have property decorators</li>
+            </ol>
+
+            <div class="rationale">
+                We start with the constructor because it defines the core data structure of our class. Every other method will work with these attributes, so it's important to establish them first.
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>Step 3: Add Property Decorators</h3>
+            <p>Implement properties for attributes that need validation.</p>
+
+            <strong>Tasks:</strong>
+            <ol>
+                <li>Create a property for patient_name:
+                    <ul>
+                        <li>Validate it's a non-empty string</li>
+                        <li>Strip any leading/trailing whitespace</li>
+                    </ul>
+                </li>
+                <li>Create a property for duration_mins:
+                    <ul>
+                        <li>Ensure it's a positive integer</li>
+                        <li>Raise ValueError if invalid</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="rationale">
+                We add properties next because they ensure our data stays valid throughout the object's lifecycle. This prevents invalid states that could cause problems in other methods.
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>Step 4: Implement Core Methods</h3>
+            <p>Add methods that handle basic appointment operations.</p>
+
+            <strong>Tasks:</strong>
+            <ol>
+                <li>Implement get_end_time():
+                    <ul>
+                        <li>Calculate end time using start_time and duration</li>
+                        <li>Return a datetime object</li>
+                    </ul>
+                </li>
+                <li>Implement cancel_appointment():
+                    <ul>
+                        <li>Check if appointment can be cancelled</li>
+                        <li>Update status appropriately</li>
+                    </ul>
+                </li>
+                <li>Implement add_note(note_text):
+                    <ul>
+                        <li>Add timestamped note to notes list</li>
+                        <li>Validate note is not empty</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="rationale">
+                Core methods come next because they build on our validated attributes to implement the class's main functionality.
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>Step 5: Add Helper Methods</h3>
+            <p>Implement utility methods that make the class more useful.</p>
+
+            <strong>Tasks:</strong>
+            <ol>
+                <li>Implement conflicts_with(other_appointment):
+                    <ul>
+                        <li>Check for time overlap with another appointment</li>
+                        <li>Return True if appointments conflict</li>
+                    </ul>
+                </li>
+                <li>Implement __str__():
+                    <ul>
+                        <li>Return formatted string with appointment details</li>
+                        <li>Include patient name, time, duration, and status</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="rationale">
+                Helper methods come last because they often combine core functionality in useful ways and make the class more practical to use.
+            </div>
+        </div>
+    </div>
+
+    <div class="problem-section">
+        <h2>Testing Your Implementation</h2>
+        <p>While you can't run the code during the exam, you should think through these scenarios:</p>
+        
+        <ol>
+            <li>Creating an appointment with valid data (should work)</li>
+            <li>Setting invalid patient name (should raise ValueError)</li>
+            <li>Setting negative duration (should raise ValueError)</li>
+            <li>Cancelling a completed appointment (should raise ValueError)</li>
+            <li>Checking overlapping appointments (should detect conflict)</li>
+        </ol>
+
+        <div class="hint">
+            <strong>Remember:</strong> You can write small code snippets showing how your class would be used - this helps verify your implementation makes sense!
+        </div>
+    </div>
+</body>
+</html>
